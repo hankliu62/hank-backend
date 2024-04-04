@@ -1,13 +1,20 @@
 {
   "name": "hank-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "all hank frontend app's backend server system",
   "private": true,
-  "author": "",
+  "author": "hank.liu",
+  "engines": {
+    "node": 18
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hankliu62/hank-backend.git"
+  },
   "scripts": {
     "kill": "kill `lsof -t -i:8090`",
     "start": "node app.js",
-    "dev": "./node_modules/.bin/nodemon app.js",
+    "dev": "nodemon app.js",
     "prd": "pm2 start app.js",
     "eslint": "eslint --ext .js .",
     "test": "echo \"Error: no test specified\" && exit 1"
