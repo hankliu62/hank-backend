@@ -1,5 +1,5 @@
 module.exports = (app) => {
-  const { router, controller, $middleware } = app
-  router.get('/user', controller.UserController.getUser)
-  router.post('/user2', $middleware.middleware, controller.UserController.getUser)
+  const { router, controller } = app
+  // LeanCloud 的健康检查
+  router.get('/', controller.IndexController.pong)
 }
