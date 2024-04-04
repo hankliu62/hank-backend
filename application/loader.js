@@ -134,6 +134,7 @@ const initLeanEngine = function (app) {
   // 判断是否为 LeanCloud 环境
   if (process.env.LEANCLOUD_APP_ID) {
     AV.init({
+      serverURLs: 'https://tlj1ryb7.lc-cn-n1-ayaqc.com',
       appId: process.env.LEANCLOUD_APP_ID,
       appKey: process.env.LEANCLOUD_APP_KEY,
       masterKey: process.env.LEANCLOUD_APP_MASTER_KEY
