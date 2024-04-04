@@ -5,14 +5,14 @@
   "private": true,
   "author": "hank.liu",
   "engines": {
-    "node": 18
+    "node": "18.x"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hankliu62/hank-backend.git"
   },
   "scripts": {
-    "kill": "kill `lsof -t -i:8090`",
+    "kill": "kill `lsof -t -i:3000`",
     "start": "node app.js",
     "dev": "nodemon app.js",
     "prd": "pm2 start app.js",
