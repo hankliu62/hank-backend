@@ -3,4 +3,4 @@ const Application = require('./application')
 const app = new Application()
 
 // start the application instance at port 3000(default)
-app.start(app.$config.port || 3000)
+app.start(process.env.LEANCLOUD_APP_PORT || process.env.PORT || app.$config.port || 3000)
