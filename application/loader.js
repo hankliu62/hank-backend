@@ -11,7 +11,7 @@ const initConfig = function (app) {
   const projectConfig = require('../config.json')
   config = { ...config, ...projectConfig }
   app.$config = config
-}
+};
 
 const initController = function (app) {
   const map = {}
@@ -29,7 +29,7 @@ const initController = function (app) {
   });
 
   app.controller = map
-}
+};
 
 const initRouter = function (app) {
   const router = new Router()
@@ -38,7 +38,7 @@ const initRouter = function (app) {
   });
   app.$router = router
   app.use(router.routes())
-}
+};
 
 const initService = function (app) {
   const serviceMap = {}
@@ -48,16 +48,16 @@ const initService = function (app) {
   Object.defineProperty(app.context, 'service', {
     get () {
       return new MapLoader({ ctx: this, properties: serviceMap })
-    },
+    }
   })
   app.service = serviceMap
-}
+};
 
 const initExtend = function (app) {
   scanFilesByFolder('./extends', (filename, extendFn) => {
     app['$' + filename] = Object.assign(app['$' + filename] || {}, extendFn(app))
   });
-};
+}
 
 const initMiddleware = function (app) {
   const middleware = {}
@@ -66,16 +66,16 @@ const initMiddleware = function (app) {
   });
   app.$middleware = middleware
   initDefaultMiddleware(app)
-}
+};
 
 const initLog4 = function (app) {
   app.$log4 = require('../common/log4')
-}
+};
 
 const initNodeCache = function (app) {
   const NodeCache = require('node-cache')
   app.$nodeCache = new NodeCache()
-}
+};
 
 const initSchedule = function (app) {
   const schedule = require('node-schedule')
@@ -92,7 +92,7 @@ const initSchedule = function (app) {
     }
   })
   app.$schedule = schedules
-}
+};
 
 const initDefaultMiddleware = function (app) {
   const json = require('koa-json')
@@ -110,13 +110,13 @@ const initDefaultMiddleware = function (app) {
       multipart: true,
       formidable: {
         maxFileSize: 3000 * 1024 * 1024
-      }
+      },
     })
-  )
+  );
   app.use(cors())
   app.use(json())
   onerror(app)
-}
+};
 
 const initSettings = function () {
   // rewrite console function at prd env
@@ -127,14 +127,14 @@ const initSettings = function () {
       }
     }
   })(console.log)
-}
+};
 
 // LeanCloud 相关的配置
 const initLeanEngine = function (app) {
   // 判断是否为 LeanCloud 环境
   if (process.env.LEANCLOUD_APP_ID) {
     AV.init({
-      serverURLs: 'https://tlj1ryb7.lc-cn-n1-ayaqc.com',
+      serverURLs: 'https://tlj1ryb7.lc-cn-n1-shared.com',
       appId: process.env.LEANCLOUD_APP_ID,
       appKey: process.env.LEANCLOUD_APP_KEY,
       masterKey: process.env.LEANCLOUD_APP_MASTER_KEY
@@ -159,4 +159,4 @@ module.exports = {
   initExtend,
   initSchedule,
   initLeanEngine
-}
+};
